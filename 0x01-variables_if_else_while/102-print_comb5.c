@@ -13,13 +13,15 @@ int main(void)
 
 	do {
 		do {
-			putchar(('0' + firstnum / 10) + 48);
-			putchar(('0' + firstnum / 10) + 48);
+			
+			putchar((firstnum / 10) + '0');
+			putchar((firstnum % 10) + '0');
+
 			putchar(' ');
 
-			putchar(('0' + secondnum / 10) + 48);
+			putchar((secondnum / 10) + '0');
 
-			putchar(('0' + secondnum / 10) + 48);
+			putchar((secondnum % 10) + '0');
 
 			if (firstnum != 99 || secondnum != 99)
 			{
@@ -34,9 +36,9 @@ int main(void)
 				secondnum = 0;
 				firstnum++;
 			}
-		} while (firstnum != 100);
+		} while (firstnum < 100);
 		firstnum = 0;
-	} while (secondnum != 100);
+	} while (secondnum < 100);
 
 	return (0);
 }
