@@ -11,17 +11,17 @@ int main(void)
 {
 int number1, number2;
 
-	number1 = 50;
-	while (number1 <= 60)
+	number1 = 48;
+	while (number1 <= 57)
 	{
-		number2 = 50;
-		while (number2 <= 58)
+		number2 = 48;
+		while (number2 <= 57)
 		{
 			if (number2 > number1)
 			{
 				putchar(number1);
 				putchar(number2);
-				if (number1 != 60 || number2 != 58)
+				if (number1 != 56 || number2 != 57)
 				{
 					putchar(',');
 					putchar(' ');
