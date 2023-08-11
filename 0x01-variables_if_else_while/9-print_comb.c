@@ -9,20 +9,18 @@
  */
 int main(void)
 {
-	int single_digit_numbers = 0;
+	unsigned int number = 48;
 
-	do {
-		putchar(single_digit_numbers + '0');
-
-		if (single_digit_numbers != 19)
+	while (number <= 57)
+	{
+		putchar(number);
+		if (number != 57)
 		{
 			putchar(',');
 			putchar(' ');
 		}
-
-		single_digit_numbers++;
-
-	} while (single_digit_numbers <= 9);
-
+		number++;
+	}
+	putchar('\n');
 	return (0);
 }
