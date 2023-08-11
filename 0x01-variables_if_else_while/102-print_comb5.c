@@ -13,13 +13,13 @@ int main(void)
 
 	do {
 		do {
-			putchar('0' + firstnum / 10);
-			putchar('0' + firstnum % 10);
+			putchar(('0' + firstnum / 10) + 48);
+			putchar(('0' + firstnum / 10) + 48);
 			putchar(' ');
 
-			putchar('0' + secondnum / 10);
+			putchar(('0' + secondnum / 10) + 48);
 
-			putchar('0' + secondnum % 10);
+			putchar(('0' + secondnum / 10) + 48);
 
 			if (firstnum != 99 || secondnum != 99)
 			{
