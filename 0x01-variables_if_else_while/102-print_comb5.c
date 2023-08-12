@@ -9,36 +9,31 @@
  */
 int main(void)
 {
-	int firstnum = 0, secondnum = 0;
+	int first_number, second_number;
 
-	do {
-		do {
-			
-			putchar((firstnum / 10) + '0');
-			putchar((firstnum % 10) + '0');
-
-			putchar(' ');
-
-			putchar((secondnum / 10) + '0');
-
-			putchar((secondnum % 10) + '0');
-
-			if (firstnum != 99 || secondnum != 99)
+	first_number = 0;
+	while (first_number < 100)
+	{
+		second_number = 0;
+		while (second_number < 100)
+		{
+			if (first_number < second_number)
 			{
-				putchar(',');
+				putchar((first_number / 10) + 48);
+				putchar((first_number % 10) + 48);
 				putchar(' ');
+				putchar((second_number / 10) + 48);
+				putchar((second_number % 10) + 48);
+				if (first_number != 98 || second_number != 99)
+				{
+					putchar(',');
+					putchar(' ');
+				}
 			}
-
-			secondnum++;
-
-			if (secondnum == 100)
-			{
-				secondnum = 0;
-				firstnum++;
-			}
-		} while (firstnum < 100);
-		firstnum = 0;
-	} while (secondnum < 100);
-
+			second_number++;
+		}
+		first_number++;
+	}
+	putchar('\n');
 	return (0);
 }
