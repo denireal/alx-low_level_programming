@@ -2,19 +2,18 @@
 
 /**
  * main - Program entry point
- * dedscription - Program to prints _putchar, followed by a new line
  *
  * Return: Always 0 (Success)
  */
 
 int main(void)
 {
+	char print_message[] = "_putchar";
 	int i = 0;
-	char print_text[] = "_putchar";
 
-	while (print_text[i] != '\0')
+	while (print_message[i] != '\0')
 	{
-		_putchar(print_text[i]);
+		_putchar(print_message[i]);
 		i++;
 	}
 
