@@ -16,7 +16,8 @@ int main(void)
 	printf("%lu, %lu, ", back_digit_1, back_digit_2);
 	for (count = 2; count < 98; count++)
 	{
-		if (back_digit_1 + back_digit_2 > LARGEST || front_digit_2 > 0 || front_digit_1 > 0)
+		if (back_digit_1 + back_digit_2 > LARGEST || front_digit_2 > 0
+				|| front_digit_1 > 0)
 		{
 			a = (back_digit_1 + back_digit_2) / LARGEST;
 			b = (back_digit_1 + back_digit_2) % LARGEST;
