@@ -1,44 +1,42 @@
 #include <stdio.h>
+#define LARGEST 10000000000
 
 /**
- * print_fibonacci - Program prints the first 50 Fibonacci numbers,
- * description - Starts with 1 and 2, followed by a new line.
- * @length: The length up to which the Fibonacci sequence should print.
+ * main - Entry point
  *
- * Return: void
- */
-void print_fibonacci(int length)
-{
-	unsigned int set_point, i;
-	unsigned int prev_left, prev_right;
-	unsigned int curr_left, curr_right;
-	unsigned int next_left, next_right;
-
-	prev_left = 1;
-	prev_right = 2;
-	set_point = length - 2;
-
-	for (i = 0; i < set_point; i++)
-	{
-		next_left = prev_left + prev_right;
-		printf("%d: ", i + 4);
-		printf("%u", next_left);
-		prev_left = prev_right;
-		prev_right = next_left;
-
-		if (i < set_point - 1)
-			printf("\n");
-	}
-	putchar('\n');
-}
-
-/**
- * main - Program entry point.
- *
- * Return: Always 0 (success).
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-	print_fibonacci(98);
-	return (0);
+    unsigned long int front_digit_1 = 0, back_digit_1 = 1, front_digit_2 = 0, back_digit_2 = 2;
+    unsigned long int carry1, carry2, carry3;
+    int count;
+
+    printf("%lu, %lu, ", back_digit_1, back_digit_2);
+    for (count = 2; count < 98; count++)
+    {
+        if (back_digit_1 + back_digit_2 > LARGEST || front_digit_2 > 0 || front_digit_1 > 0)
+        {
+            carry1 = (back_digit_1 + back_digit_2) / LARGEST;
+            carry2 = (back_digit_1 + back_digit_2) % LARGEST;
+            carry3 = front_digit_1 + front_digit_2 + carry1;
+            front_digit_1 = front_digit_2;
+            front_digit_2 = carry3;
+            back_digit_1 = back_digit_2;
+            back_digit_2 = carry2;
+            printf("%lu%010lu", front_digit_2, back_digit_2);
+        }
+        else
+        {
+            carry2 = back_digit_1 + back_digit_2;
+            back_digit_1 = back_digit_2;
+            back_digit_2 = carry2;
+            printf("%lu", back_digit_2);
+        }
+        if (count != 97)
+            printf(", ");
+    }
+    printf("\n");
+    return (0);
 }
+
