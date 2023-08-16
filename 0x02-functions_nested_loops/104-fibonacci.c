@@ -1,45 +1,44 @@
 #include <stdio.h>
 
 /**
- * print_fib - prints the first 50 Fibonacci numbers,
- * starting with 1 and 2, followed by a new line.
- * @len: the length up to which the Fibonacci sequence should print.
+ * print_fibonacci - Program prints the first 50 Fibonacci numbers,
+ * description - Starts with 1 and 2, followed by a new line.
+ * @length: The length up to which the Fibonacci sequence should print.
  *
  * Return: void
  */
-void print_fib(int len)
+void print_fibonacci(int length)
 {
-	unsigned int target, i;
-	unsigned int former_left, former_right;
-	unsigned int latter_left, latter_right;
-	unsigned int fib_left, fib_right;
+	unsigned int set_point, i;
+	unsigned int prev_left, prev_right;
+	unsigned int curr_left, curr_right;
+	unsigned int next_left, next_right;
 
-	former_left = 1;
-	former_right = 2;
-	target = len - 2;
+	prev_left = 1;
+	prev_right = 2;
+	set_point = length - 2;
 
-	for (i = 0; i < target; i++)
+	for (i = 0; i < set_point; i++)
 	{
-		fib_left = former_left + former_right;
+		next_left = prev_left + prev_right;
 		printf("%d: ", i + 4);
-		printf("%u", fib_left);
-		former_left = former_right;
-		former_right = fib_left;
+		printf("%u", next_left);
+		prev_left = prev_right;
+		prev_right = next_left;
 
-		if (i < target - 1)
+		if (i < set_point - 1)
 			printf("\n");
 	}
-
 	putchar('\n');
 }
 
 /**
- * main - Entry point.
+ * main - Program entry point.
  *
  * Return: Always 0 (success).
  */
 int main(void)
 {
-	print_fib(98);
+	print_fibonacci(98);
 	return (0);
 }
