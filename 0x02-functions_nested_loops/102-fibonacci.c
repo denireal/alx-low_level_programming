@@ -7,27 +7,21 @@
  */
 int main(void)
 {
-	int fib_num[50];
+	int i;
+	long int fib_num[50];
 
 	fib_num[0] = 1;
 	fib_num[1] = 2;
+	printf("%ld, %ld, ", fib_num[0], fib_num[1]);
 
-	int i = 2;
-
-	while (i < 50)
+	for (i = 2; i < 50; i++)
 	{
 		fib_num[i] = fib_num[i - 1] + fib_num[i - 2];
-		i++;
+		if (i == 49)
+			printf("%ld\n", fib_num[i]);
+		else
+			printf("%ld, ", fib_num[i]);
 	}
-
-	i = 0;
-
-	while (i < 49)
-	{
-		printf("%d, ", fib_num[i]);
-		i++;
-	}
-	printf("%d\n", fib_num[49]);
 
 	return (0);
 }
