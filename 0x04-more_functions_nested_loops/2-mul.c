@@ -3,7 +3,7 @@
 /**
  * mul - program ultiplies 2 numbers
  * @num1: first number.
- * @numb2: second number.
+ * @num2: second number.
  *
  * Return: The sum (int).
  */
