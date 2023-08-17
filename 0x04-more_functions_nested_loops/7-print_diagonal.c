@@ -5,7 +5,8 @@
  * @n: n input integer
  *
  * Return: void
- */void print_diagonal(int n)
+ */
+void print_diagonal(int n)
 {
 	int prev, i;
 
