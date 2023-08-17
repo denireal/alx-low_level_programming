@@ -19,7 +19,7 @@ void print_diagonal(int n)
 	for (i = 0 ; i < n ; i++)
 	{
 		prev = i;
-		while (prior > 0)
+		while (prev > 0)
 		{
 			_putchar(32);
 			prev--;
