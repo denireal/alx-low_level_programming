@@ -1,7 +1,7 @@
 #ifndef MAIN_HEADER
 #define MAIN_HEADER
 
-#include "_putchar.c"
+/* #include "_putchar.c" */
 
 /* prototypes for 0x05. C - Pointers, arrays and strings tasks */
 void rev_string(char *s);
