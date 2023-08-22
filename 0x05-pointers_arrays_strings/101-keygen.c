@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define SUM 2772
 #include <time.h>
 
 /**
@@ -10,21 +11,26 @@
 
 int main(void)
 {
-int password[100];
-int sum = 0;
-int diff;
+	int sum = 0, i = 0, j = 0;
+	char str[100];
 
-srand(time(NULL));
-
-for (int i = 0; i < 99; i++)
-{
-password[i] = rand() % 78;
-sum += password[i];
-putchar(password[i] + '0');
-}
-
-diff = 2772 - sum;
-putchar(diff + '0');
-
-return (0);
+	srand(time(NULL));
+	while (sum < SUM)
+	{
+		if (SUM - sum < 48)
+			sum -= str[--i];
+		else if (SUM - sum <= 126)
+			j = SUM - sum;
+		else
+			j = rand() % (126 - 48) + 48;
+		if (j)
+		{
+			str[i++] = j;
+			sum += j;
+		}
+		j = 0;
+	}
+	str[i] = '\0';
+	printf("%s", str);
+	return (0);
 }
