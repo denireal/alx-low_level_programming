@@ -11,16 +11,18 @@
 
 char *_strcpy(char *dest, char *src)
 {
-	int a = 0;
+	unsigned long int i = 0;
 
-	if (src == NULL)
-		return (NULL);
-
-	while (*src != '\0')
+	while (src[i] != '\0')
 	{
-		dest[a] = *src;
-		a++;
-		src++;
+		dest[i] = src[i];
+		i++;
+
+		/* Check for null termination to prevent buffer overflow */
+		if (i >= sizeof(dest))
+			break;
 	}
+
+	dest[i] = '\0';
 	return (dest);
 }
