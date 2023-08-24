@@ -1,5 +1,3 @@
-#include <ctype.h>
-#include "main.h"
 
 /**
 * string_toupper - program converts all lowercase letters
