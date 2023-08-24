@@ -6,15 +6,15 @@
 *
 * Return: Pointer to the modified string.
 */
-char *string_toupper(char *str)
+char *string_toupper(char *s) 
 {
-char *a_ptr = str;
-
-while (*a_ptr)
-{
-*a_ptr = toupper(*a_ptr);
-a_ptr++;
-}
-
-return (str);
+	char *ptr = s;
+	for (; *ptr; ++ptr)
+	{
+		if (*ptr >= 'a' && *ptr <= 'z')
+		{
+			*ptr -= 32;
+		}
+	}
+	return (s); 
 }
