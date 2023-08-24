@@ -10,8 +10,8 @@ char *cap_string(char *str)
 {
 	int index, spec_index;
 
-	char special_chars[13] = {' ', '\t', '\n', ',', ';', '.',
-		                              '!', '?', '"', '(', ')', '{', '}'};
+	char special_chars[13] = {' ', '\t', '\n', ',', ';', '.', '!', '?',
+		'"', '(', ')', '{', '}'};
 
 	for (index = 0; str[index] != '\0'; index++)
 	{
