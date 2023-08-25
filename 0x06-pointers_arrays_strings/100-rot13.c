@@ -24,6 +24,6 @@ s[first_index] = rot13_table[sec_index];
 break;
 }
 }
-
+}
 return (s);
 }
