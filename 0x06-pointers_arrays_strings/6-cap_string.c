@@ -1,4 +1,6 @@
 #include "main.h"
+#include <ctype.h>
+#include <stdbool.h>
 
 /**
  *cap_string - capitalizes every word of a string
@@ -6,31 +8,28 @@
  *
  *Return: the resulting string (str)
  */
+
 char *cap_string(char *str)
 {
-	int index, spec_index;
+	int i = 0;
 
-	char special_chars[13] = {' ', '\t', '\n', ',', ';', '.', '!', '?',
-		'"', '(', ')', '{', '}'};
+	bool new_word = true;
 
-	for (index = 0; str[index] != '\0'; index++)
+	for (; str[i] != '\0'; i++)
 	{
-		if (index == 0 && str[index] >= 'a' && str[index] <= 'z')
+		if (isspace(str[i]) || ispunct(str[i]))
 		{
-			str[index] -= 32;
+			new_word = true;
 		}
-
-		for (spec_index = 0; spec_index < 13; spec_index++)
+		else if (new_word && islower(str[i]))
 		{
-			if (str[index] == special_chars[spec_index])
-			{
-				if (str[index + 1] >= 'a' && str[index + 1] <= 'z')
-				{
-					str[index + 1] -= 32;
-				}
-			}
+			str[i] = toupper(str[i]);
+			new_word = false;
 		}
-}
-
-return (str);
+		else
+		{
+			new_word = false;
+		}
+	}
+	return (str);
 }
