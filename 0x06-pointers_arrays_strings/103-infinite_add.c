@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <string.h>
 /**
 * infinite_add -  program adds two numbers
 * @n1: first number
@@ -14,14 +14,13 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
 int len_n1 = strlen(n1);
 int len_n2 = strlen(n2);
-
-if (len_n1 + len_n2 + 1 > size_r)
-return (0);
-
 int carry = 0;
 int result_index = size_r - 1;
 int n1_index = len_n1 - 1;
 int n2_index = len_n2 - 1;
+
+if (len_n1 + len_n2 + 1 > size_r)
+return (0);
 
 r[result_index] = '\0';
 
