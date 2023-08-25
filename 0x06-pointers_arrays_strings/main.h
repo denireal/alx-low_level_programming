@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "_putchar.c"
+#include <stdbool.h>
+#include <ctype.h>
 
 /* Insert the tasks prototypes */
 int _putchar(char c);
