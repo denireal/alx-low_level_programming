@@ -9,28 +9,21 @@
 
 char *rot13(char *s)
 {
-char *ptr = s;
-char rot13_table[256];
+int first_index = 0, sec_index = 0;
 
-int i = 0;
-char c = 'a';
+static char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+static char rot13_table[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-for (; i < 256; i++)
+for (; s[first_index]; first_index++)
 {
-rot13_table[i] = i;
+for (; sec_index < 52; sec_index++)
+{
+if (s[first_index] == alphabet[sec_index])
+{
+s[first_index] = rot13_table[sec_index];
+break;
+}
 }
 
-for (; c <= 'z'; c++)
-{
-rot13_table[c] = 'a' + (c - 'a' + 13) % 26;
-rot13_table[c - 'a' + 'A'] = rot13_table[c] - 'a' + 'A';
-}
-
-while (*s)
-{
-*s = rot13_table[*s];
-s++;
-}
-
-return (ptr);
+return (s);
 }
