@@ -3,12 +3,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "_putchar.c"
 #include <stdbool.h>
 #include <ctype.h>
 
 /* Insert the tasks prototypes */
-int _putchar(char c);
+
 char *_strcat(char *dest, char *src);
 char *_strncat(char *dest, char *src, int n);
 char *_strncpy(char *dest, char *src, int n);
