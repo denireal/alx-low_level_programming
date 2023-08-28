@@ -3,6 +3,7 @@
 
 /* #include "_putchar.c" */
 #include <stdio.h>
+#include <string.h>
 
 /* include all project prototypes */
 /* int _putchar(char c); */
