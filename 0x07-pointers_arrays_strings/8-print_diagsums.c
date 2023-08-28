@@ -15,8 +15,8 @@ void print_diagsums(int *a, int size)
 
 	for (; index < size; index++)
 	{
-		diag_sum1 += *(a + size * index + i);
-		diag_sum2 += *(a + size * (inddex + 1) - index - 1);
+		diag_sum1 += a[index];
+		a += size;
 	}
 	a -= size;
 
