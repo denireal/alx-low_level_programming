@@ -10,18 +10,5 @@
 
 void set_string(char **s, char *to)
 {
-	int i = 0;
-
-	if (*s != NULL)
-	{
-		for (; (*s)[i] != '\0'; i++)
-		{
-			(*s)[i] = '\0';
-		}
-	}
-
-	for (; to[i] != '\0'; i++)
-	{
-		(*s)[i] = to[i];
-	}
+	*s = to;
 }
