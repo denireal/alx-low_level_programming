@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
 * print_chessboard - Display the contents of a chessboard.
 * @a: A two-dimensional array representing the chessboard.
@@ -17,7 +19,7 @@ void print_chessboard(char (*a)[8])
 		j = 0;
 		while (j < 8)
 		{
-			_putchar(*(*(a + i) + j));
+			_putchar((*(a + i))[j]);
 			j++;
 		}
 		_putchar('\n');
