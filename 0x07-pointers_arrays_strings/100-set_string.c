@@ -1,23 +1,27 @@
-#include <stdio.h>
-#include <string.h>
+#include "main.h"
 
 /**
- *  * set_string - Sets the value of a pointer to a char.
- *   * @s: Pointer to a pointer that will be set to a new string.
- *    * @to: Pointer to the string to be copied.
- *     */
+* set_string - Updates the value of a pointer to a char.
+* @s: Pointer to a pointer that will update the string.
+* @to: Pointer to the string to be copied.
+*
+* Return: will retun void
+*/
+
 void set_string(char **s, char *to)
 {
-	    if (*s != NULL)
-		        {
-				        for (int i = 0; (*s)[i] != '\0'; i++)
-						        {
-								            (*s)[i] = '\0';
-									            }
-					    }
+	int i = 0;
 
-	        for (int i = 0; to[i] != '\0'; i++)
-			    {
-				            (*s)[i] = to[i];
-					        }
+	if (*s != NULL)
+	{
+		for (; (*s)[i] != '\0'; i++)
+		{
+			(*s)[i] = '\0';
+		}
+	}
+
+	for (; to[i] != '\0'; i++)
+	{
+		(*s)[i] = to[i];
+	}
 }
