@@ -1,5 +1,6 @@
 #ifndef MAIN_HEADER
 #define MAIN_HEADER
+#define MAX_LEN 1000
 
 /* include "_putchar.c" */
 #include <stdio.h>
