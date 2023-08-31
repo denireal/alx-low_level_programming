@@ -2,7 +2,7 @@
 #include <stdbool.h>
 
 /**
- * _calculate_string_length - Calculates the length of a string.
+ * _strlen_recursion - Calculates the length of a string.
  * @s: A string for which the length is to be calculated.
  *
  * Return: The length of string @s.
