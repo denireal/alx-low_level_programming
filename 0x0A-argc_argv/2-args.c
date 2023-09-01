@@ -5,7 +5,7 @@
  * arguments it receives, one per line
  * @argc: integer representing the number of command line arguments
  * @argv: An array of strings representing the command-line arguments.
- * 
+ *
  * Return: returns 0.
  */
 int main(int argc, char **argv)
