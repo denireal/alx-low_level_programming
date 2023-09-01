@@ -10,7 +10,7 @@
  * Return: true if the string is a valid integer, false otherwise.
  */
 
-bool is_valid_int(char *s);
+int is_valid_int(char *s);
 
 /**
  * main - Entry point of the program. this function adds positive
@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 	return (0);
 }
 
-bool is_valid_int(char *s)
+int is_valid_int(char *s)
 {
 	char *endptr;
 
@@ -57,7 +57,7 @@ bool is_valid_int(char *s)
 
 	if (*endptr != '\0' || num < INT_MIN || num > INT_MAX)
 	{
-		return (false);
+		return (0);
 	}
-	return (true);
+	return (1);
 }
