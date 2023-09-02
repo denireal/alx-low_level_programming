@@ -3,12 +3,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/**
- * is_valid_int - Check if a string represents a valid integer.
- * @s: The string to check.
- *
- * Return: true if the string is a valid integer, false otherwise.
- */
 
 int is_valid_int(char *s);
 
@@ -48,7 +42,12 @@ int main(int argc, char **argv)
 	printf("%d\n", aggreg);
 	return (0);
 }
-
+/**
+ * is_valid_int - Check if a string represents a valid integer.
+ * @s: The string to check.
+ *
+ * Return: true if the string is a valid integer, false otherwise.
+ */
 int is_valid_int(char *s)
 {
 	char *endptr;
