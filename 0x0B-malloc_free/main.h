@@ -1,7 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+
 /* List of prototypes for the tasks */ 
 int _putchar(char c);
 char *create_array(unsigned int size, char c);
