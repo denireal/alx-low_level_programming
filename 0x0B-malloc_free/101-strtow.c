@@ -63,7 +63,7 @@ else
 {
 wd_s = str;
 while (*str && *str != ' '
-&& *str != '\t' && *str != '\n')
+	&& *str != '\t' && *str != '\n')
 str++;
 wd_len = str - wd_s;
 wds[i] = malloc((wd_len + 1) * sizeof(char));
