@@ -54,6 +54,10 @@ char *argstostr(int ac, char **av)
 		if (av[i])
 		{
 			concatenate_strings(combined_string, av[i], "\n");
+			if (i < ac - 1)
+			{
+				concatenate_strings(combined_string, "\n", "");
+			}
 		}
 	}
 	return (combined_string);
