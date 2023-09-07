@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 #include <stddef.h>
+#include <string.h>
 
 /**
  * string_nconcat - concatenate two strings with a limit
