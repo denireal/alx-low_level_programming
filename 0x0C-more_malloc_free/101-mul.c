@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 	num2 = parse_ull(argv[2]);
 
 	asm("mul %1" : "=A"(product) : "r"(num1), "0"(num2));
-	printf("Result: %" PRIu64 "\n", product);
+	printf(PRIu64 "\n", product);
 
 	return (0);
 }
