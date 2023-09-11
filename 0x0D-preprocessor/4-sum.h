@@ -1,5 +1,5 @@
-#ifndef FUNCTIONLIKEMACRO_H
-#define FUNCTIONLIKEMACRO_H
+#ifndef FUNCTION-LIKEMACRO_H
+#define FUNCTION-LIKEMACRO_H
 
 /**
  * File: likemacro.h
@@ -9,5 +9,5 @@
  *
  * The SUM macro calculates the sum of two values.
  */
-#define SUM(x, y) (x + y)
+#define SUM(x, y) ((x) + (y))
 #endif
