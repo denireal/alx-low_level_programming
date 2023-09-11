@@ -2,7 +2,7 @@
 #define FUNCTLIKEMACRO_H
 
 /**
- * File: likemacro.h
+ * File: 4-sum
  * Desc: Header file defining the SUM macro.
  * @x: First operand
  * @y: Second operand
