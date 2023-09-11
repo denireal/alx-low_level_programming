@@ -1,5 +1,5 @@
-#ifndef FUNCTION-LIKEMACRO_H
-#define FUNCTION-LIKEMACRO_H
+#ifndef FUNCTLIKEMACRO_H
+#define FUNCTLIKEMACRO_H
 
 /**
  * File: likemacro.h
