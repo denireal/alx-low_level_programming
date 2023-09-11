@@ -4,7 +4,8 @@
  * struct dog - the struct called dog
  * @name: pointer to a character array representing the name of the dog.
  * @age: floating-point number representing the age of the dog.
- * @owner: pointer to a character array representing the name of the dog's owner
+ * @owner: pointer to a character array representing the name of the
+ * dog's owner
  */
 typedef struct dog
 {
