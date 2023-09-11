@@ -22,7 +22,6 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (dog == NULL)
 		return (NULL);
 
-	/* Compute the length of the name and allocate memory for it */
 	for (name_length = 0; name[name_length]; name_length++)
 		;
 	name_length++;
@@ -33,12 +32,10 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 	}
 
-	/* Copy the name to the dog's name member */
 	for (i = 0; i < name_length; i++)
 		dog->name[i] = name[i];
 	dog->age = age;
 
-	/* Compute the length of the owner and allocate memory for it */
 	for (owner_length = 0; owner[owner_length]; owner_length++)
 		;
 	owner_length++;
@@ -51,7 +48,6 @@ dog_t *new_dog(char *name, float age, char *owner)
 		return (NULL);
 	}
 
-	/* Copy the owner to the dog's owner member */
 	for (i = 0; i < owner_length; i++)
 		dog->owner[i] = owner[i];
 	return (dog);
