@@ -1,6 +1,8 @@
 #ifndef FUNCTION_POINTERS_HEADER
 #define FUNCTION_POINTERS_HEADER
 
+#include <stdio.h>
+
 /* Desc: header file */
 /* prototypes of all functions and prototype of the function _putchar */
 int _putchar(char c);
