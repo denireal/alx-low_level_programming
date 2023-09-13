@@ -1,5 +1,5 @@
-#ifndef CALC_HEADER
-#define CALC_HEADER
+#ifndef _3_CALC_H
+#define _3_CALC_H
 
 #include <stdio.h>
 #include <string.h>
