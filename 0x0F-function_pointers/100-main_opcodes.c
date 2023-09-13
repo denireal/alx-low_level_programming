@@ -2,9 +2,10 @@
 #include <stdio.h>
 
 /**
- * print_main_opcode - Prints the opcode of the print_main_opcode
+ * print_opcodes - Prints the opcode of the print_opcodes
  * function.
- * @bytes: Number of bytes to print.
+ * @a: Pointer variable a
+ * @n: int variable
  *
  * Return: nothing
  */
@@ -19,7 +20,6 @@ if (i < n - 1)
 printf(" ");
 }
 printf("\n");
-
 }
 
 /**
