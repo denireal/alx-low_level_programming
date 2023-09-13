@@ -7,7 +7,6 @@
  * @s: pointer to char
  * Return: Returns the function and the operator when equal
 **/
-
 int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
