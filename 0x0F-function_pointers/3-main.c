@@ -11,38 +11,20 @@
  */
 int main(int argc, char *argv[])
 {
-int number1, number2, result;
-char *operator;
+int (*main_func)(int, int);
 
 if (argc != 4)
 {
-fprintf(stderr, "Error\n");
-return (argc != 4 ? 98 : 0);
+printf("Error\n");
+exit(98);
 }
 
-operator = argv[2];
-
-if (strcmp(operator, "+") != 0 &&
-strcmp(operator, "-") != 0 &&
-strcmp(operator, "*") != 0 &&
-strcmp(operator, "/") != 0 &&
-strcmp(operator, "%") != 0)
+func = get_op_func(argv[2]);
+if (main_func == NULL)
 {
-fprintf(stderr, "Error\n");
-return (99);
+printf("Error\n");
+exit(99);
 }
-
-number1 = atoi(argv[1]);
-number2 = atoi(argv[3]);
-
-if ((*operator == '/' || *operator == '%') && number2 == 0)
-{
-fprintf(stderr, "Error\n");
-return (100);
-}
-
-result = (*get_op_func(operator))(number1, number2);
-printf("%d\n", result);
-
+printf("%d\n", main_func(atoi(argv[1]), atoi(argv[3])));
 return (0);
-}
+
