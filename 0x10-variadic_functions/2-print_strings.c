@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include "variadic_functions.h"
+#include <stdio.h>
 
 /**
  * print_strings - Prints strings separated by a separator
