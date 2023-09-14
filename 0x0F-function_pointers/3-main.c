@@ -19,7 +19,7 @@ printf("Error\n");
 exit(98);
 }
 
-func = get_op_func(argv[2]);
+main_func = get_op_func(argv[2]);
 if (main_func == NULL)
 {
 printf("Error\n");
@@ -27,4 +27,4 @@ exit(99);
 }
 printf("%d\n", main_func(atoi(argv[1]), atoi(argv[3])));
 return (0);
-
+}
