@@ -1,116 +1,97 @@
 #include "variadic_functions.h"
-#include <unistd.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 
 /**
- * print_char - Prints a character.
- * @valist: A va_list with character argument.
+ * print_char - Prints a character
+ * @arg: A character argument
  */
-void print_char(va_list valist)
-{
-char c;
-
-c = va_arg(valist, int);
-write(1, &c, 1);
-}
-
-/**
- * print_int - Prints an integer.
- * @valist: A va_list with integer argument.
- */
-void print_int(va_list valist)
-{
-int num;
-char buffer[32];
-int len;
-
-num = va_arg(valist, int);
-len = snprintf(buffer, sizeof(buffer), "%d", num);
-write(1, buffer, len);
+void print_char(va_list arg) {
+    char c = va_arg(arg, int);
+    write(1, &c, 1);
 }
 
 /**
- * print_float - Prints a float.
- * @valist: A va_list with double argument.
+ * print_int - Prints an integer
+ * @arg: An integer argument
  */
-void print_float(va_list valist)
-{
-double num;
-char buffer[32];
-int len;
-
-num = va_arg(valist, double);
-len = snprintf(buffer, sizeof(buffer), "%f", num);
-write(1, buffer, len);
+void print_int(va_list arg) {
+    int num = va_arg(arg, int);
+    char buffer[32];
+    snprintf(buffer, sizeof(buffer), "%d", num);
+    write(1, buffer, strlen(buffer));
 }
 
 /**
- * print_string - Prints a string (or "(nil)" if NULL).
- * @valist: A va_list with string argument.
+ * print_float - Prints a float
+ * @arg: A double argument
  */
-void print_string(va_list valist)
-{
-char *str;
-int len;
-
-str = va_arg(valist, char *);
-len = 0;
-while (str[len])
-len++;
-
-write(1, str, len);
-
-str = va_arg(valist, char *);
-len = 0;
-while (str[len])
-len++;
-
-write(1, "(nil)", 5);
+void print_float(va_list arg) {
+    double num = va_arg(arg, double);
+    char buffer[32];
+    snprintf(buffer, sizeof(buffer), "%f", num);
+    write(1, buffer, strlen(buffer));
 }
 
 /**
- * print_all - Prints anything.
- * @format: A list of types of arguments passed to the function.
+ * print_string - Prints a string (or "(nil)" if NULL)
+ * @arg: A string argument
  */
-void print_all(const char *const format, ...)
-{
-va_list valist;
-unsigned int f_index = 0;
-int _arg = 0;
-/* const char valid_s[] = "cifs"; */
-int len;
-
-va_start(valist, format);
-
-while (format && format[f_index])
-{
-switch (format[f_index])
-{
-case 's':
-if (_arg)
-{
-write(1, ", ", 2);
-}
-print_string(valist);
-_arg = 1;
-break;
-case 'c':
-print_char(valist);
-_arg = 1;
-break;
-case 'i':
-print_int(valist);
-_arg = 1;
-break;
-case 'f':
-print_float(valist);
-_arg = 1;
-break;
-}
-f_index++;
+void print_string(va_list arg) {
+    char *s = va_arg(arg, char *);
+    char *output = s ? s : "(nil)";
+    write(1, output, strlen(output));
 }
 
-len = write(1, "\n", 1);
-(void)len;
-va_end(valist);
+/**
+ * print_all - Prints various types of data based on a format string
+ * @format: A string containing format specifiers
+ * @...: Variable number of arguments corresponding to the format specifiers
+ *
+ * Description: This function prints data of different types based on the format
+ * string. The format string can contain the following specifiers:
+ *   - 'c' for char
+ *   - 'i' for integer
+ *   - 'f' for float
+ *   - 's' for string (if the string is NULL, "(nil)" is printed)
+ *   - Any other character is ignored
+ */
+void print_all(const char *const format, ...) {
+    va_list args;
+    va_start(args, format);
+
+    char ch;
+    const char *fmt = format;
+
+    int first_output = 1; // To control comma and space placement
+    char newline = '\n';
+
+    while ((ch = *fmt)) {
+        if (!first_output) {
+            write(1, ", ", 2);
+        }
+        
+        switch (ch) {
+            case 'c':
+                print_char(args);
+                break;
+            case 'i':
+                print_int(args);
+                break;
+            case 'f':
+                print_float(args);
+                break;
+            case 's':
+                print_string(args);
+                break;
+        }
+        
+        first_output = 0; // Set to 0 after the first value is printed
+        fmt++;
+    }
+
+    va_end(args);
+
+    write(1, &newline, 1); // Print a newline character
 }
