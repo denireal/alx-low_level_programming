@@ -26,8 +26,12 @@ case 'f':
 printf("%s%f", separator, va_arg(args, double));
 break;
 case 's':
-separator = va_arg(args, char *) ? "" : "(nil)";
-printf("%s%s", separator, separator);
+{
+char *str = va_arg(args, char *);
+if (str == NULL)
+str = "(nil)";
+printf("%s%s", separator, str);
+}
 break;
 default:
 i++;
