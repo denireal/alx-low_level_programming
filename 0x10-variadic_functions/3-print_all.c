@@ -1,77 +1,41 @@
 #include "variadic_functions.h"
 #include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 
 /**
- * print_all - function that prints anything.
- * @format: a list of arguments.
- *
- * Return: no return available.
- */
-void print_all(
-        const char * const format,
-        ...)
+* print_all - function that prints anything.
+* @format: a list of arguments.
+*/
+void print_all(const char * const format, ...)
 {
-va_list valist;
-unsigned int a = 0, b, c = 0;
-char *str;
-const char _arg[] = "cifs";
+va_list args;
+char *separator = "";
+int i = 0;
 
-va_start(valist, format);
-while (format && format[a])
+va_start(args, format);
+while (format && format[i])
 {
-b = 0;
-while (_arg[b])
-{
-if (format[a] == _arg[b] && c)
-{
-write(1, ", ", 2);
-break;
-}
-b++;
-}
-switch (format[a])
+switch (format[i])
 {
 case 'c':
-{
-char ch = va_arg(valist, int);
-write(1, &ch, 1);
-c = 1;
+printf("%s%c", separator, va_arg(args, int));
 break;
-}
 case 'i':
-{
-int num = va_arg(valist, int);
-char buffer[32];
-int len = snprintf(buffer, sizeof(buffer), "%d", num);
-write(1, buffer, len);
-c = 1;
+printf("%s%d", separator, va_arg(args, int));
 break;
-}
 case 'f':
-{
-double num = va_arg(valist, double);
-char buffer[32];
-int len = snprintf(buffer, sizeof(buffer), "%f", num);
-
-write(1, buffer, len);
-c = 1;
+printf("%s%f", separator, va_arg(args, double));
 break;
-}
 case 's':
-str = va_arg(valist, char *);
-c = 1;
-if (!str)
-{
-write(1, "(nil)", 5);
+separator = va_arg(args, char *) ? "" : "(nil)";
+printf("%s%s", separator, separator);
 break;
+default:
+i++;
+continue;
 }
-write(1, str, strlen(str));
-break;
+separator = ", ";
+i++;
 }
-a++;
-}
-write(1, "\n", 1);
-va_end(valist);
+va_end(args);
+printf("\n");
 }
