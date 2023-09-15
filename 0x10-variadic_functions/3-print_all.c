@@ -1,93 +1,77 @@
 #include "variadic_functions.h"
+#include <stdio.h>
 #include <unistd.h>
 #include <string.h>
-#include <stdio.h>
 
 /**
- * print_char - Prints a character.
- * @c: The character to print.
+ * print_all - function that prints anything.
+ * @format: a list of arguments.
+ *
+ * Return: no return available.
  */
-void print_char(char c)
+void print_all(
+        const char * const format,
+        ...)
 {
-write(1, &c, 1);
+va_list valist;
+unsigned int a = 0, b, c = 0;
+char *str;
+const char _arg[] = "cifs";
+
+va_start(valist, format);
+while (format && format[a])
+{
+b = 0;
+while (_arg[b])
+{
+if (format[a] == _arg[b] && c)
+{
+write(1, ", ", 2);
+break;
 }
-
-/**
- * print_int - Prints an integer.
- * @num: The integer to print.
- */
-void print_int(int num)
+b++;
+}
+switch (format[a])
 {
+case 'c':
+{
+char ch = va_arg(valist, int);
+write(1, &ch, 1);
+c = 1;
+break;
+}
+case 'i':
+{
+int num = va_arg(valist, int);
 char buffer[32];
 int len = snprintf(buffer, sizeof(buffer), "%d", num);
-
 write(1, buffer, len);
+c = 1;
+break;
 }
-
-/**
- * print_float - Prints a float.
- * @num: The double to print.
- */
-void print_float(double num)
+case 'f':
 {
+double num = va_arg(valist, double);
 char buffer[32];
 int len = snprintf(buffer, sizeof(buffer), "%f", num);
 
 write(1, buffer, len);
+c = 1;
+break;
 }
-
-/**
- * print_string - Prints a string (or "(nil)" if NULL).
- * @str: The string to print.
- */
-void print_string(const char *str)
-{
+case 's':
+str = va_arg(valist, char *);
+c = 1;
 if (!str)
 {
 write(1, "(nil)", 5);
-return;
+break;
 }
-
 write(1, str, strlen(str));
-}
-
-/**
- * print_all - Prints anything.
- * @format: A list of types of arguments passed to the function.
- */
-void print_all(const char *const format, ...)
-{
-va_list valist;
-unsigned int f_index = 0;
-int separator = 0;
-
-va_start(valist, format);
-
-while (format && format[f_index])
-{
-if (separator)
-write(1, ", ", 2);
-
-switch (format[f_index])
-{
-case 's':
-print_string(va_arg(valist, const char *));
-break;
-case 'c':
-print_char(va_arg(valist, int));
-break;
-case 'i':
-print_int(va_arg(valist, int));
-break;
-case 'f':
-print_float(va_arg(valist, double));
 break;
 }
-
-separator = 1;
-f_index++;
+a++;
 }
-
 write(1, "\n", 1);
 va_end(valist);
 }
