@@ -12,11 +12,12 @@ void first(void) __attribute__ ((constructor));
  */
 void first(void)
 {
-	char message1[] = "You're beat! and yet, you must allow,\n";
-	char message2[] = "I bear my house upon my back!\n";
-	size_t len1 = sizeof(message1) - 1;
-	size_t len2 = sizeof(message2) - 1;
+	int i = 0;
 
-	write(STDOUT_FILENO, message1, len1);
-	write(STDOUT_FILENO, message2, len2);
+	char message[] = "You're beat! and yet, you must allow,\n"
+	                 "I bear my house upon my back!\n";
+
+	for (; message[i] != '\0'; i++) {
+		putchar(message[i]);
+	}
 }
