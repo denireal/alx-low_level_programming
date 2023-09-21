@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include "lists.h"
 
 /**
@@ -11,22 +10,15 @@
 */
 size_t list_len(const list_t *h)
 {
-size_t n = 0;
-char buffer[20];
-int len;
+	size_t n = 0;
 
-while (h)
-{
-n++;
-h = h->next;
-}
+	if (h == NULL)
+		return (0);
 
-len = snprintf(buffer, sizeof(buffer), "%lu\n", n);
+	do {
+		n++;
+		h = h->next;
+	} while (h != NULL);
 
-if (len >= 0)
-{
-write(1, buffer, (size_t)len);
-}
-
-return (n);
+	return (n);
 }
