@@ -13,10 +13,12 @@ size_t print_list(const list_t *h)
 {
 size_t nodes_printed = 0;
 char buffer[256];
+int len;
+ssize_t bytes_written;
 
 while (h)
 {
-int len = snprintf(buffer, sizeof(buffer), "[%u] %s\n",
+len = snprintf(buffer, sizeof(buffer), "[%u] %s\n",
 h->len, (h->str ? h->str : "(nil)"));
 
 if (len < 0 || (size_t)len >= sizeof(buffer))
@@ -24,7 +26,7 @@ if (len < 0 || (size_t)len >= sizeof(buffer))
 return (nodes_printed);
 }
 
-ssize_t bytes_written = write(1, buffer, (size_t)len);
+bytes_written = write(1, buffer, (size_t)len);
 
 /* Check for errors in write */
 if (bytes_written < 0)
