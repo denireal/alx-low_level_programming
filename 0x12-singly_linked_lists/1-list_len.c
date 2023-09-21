@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include "lists.h"
@@ -28,5 +29,4 @@ write(1, buffer, (size_t)len);
 }
 
 return (n);
-}
 }
