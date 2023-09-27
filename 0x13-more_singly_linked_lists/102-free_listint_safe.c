@@ -1,72 +1,23 @@
 #include "lists.h"
 
 /**
-* free_list - To free a linked list
-* @head: head of a list.
+* free_listint_safe - Frees a listint_t list safely
+* @h: Pointer to a pointer to the head of the list
 *
-* Return: return 0.
-*/
-void free_list(listp_t **head)
-{
-listp_t *tmp;
-listp_t *current;
-
-if (head != NULL)
-{
-current = *head;
-while ((tmp = current) != NULL)
-{
-current = current->next;
-free(tmp);
-}
-*head = NULL;
-}
-}
-
-/**
-* free_listint_safe - To free a linked list.
-* @h: list head.
-*
-* Return: size of the freed list.
+* Return: (size) - The size of the list that was freed
+* If the function fails, it exits with status 98
 */
 size_t free_listint_safe(listint_t **h)
 {
-size_t count = 0;
-listp_t *ptr, *new_ptr, *scan;
-listint_t *current_node;
+size_t size = 0;
 
-ptr = NULL;
 while (*h != NULL)
 {
-new_ptr = malloc(sizeof(listp_t));
-
-if (new_ptr == NULL)
-exit(98);
-
-new_ptr->p = (void *)*h;
-new_ptr->next = ptr;
-ptr = new_ptr;
-
-scan = ptr;
-
-while (scan->next != NULL)
-{
-scan = scan->next;
-if (*h == scan->p)
-{
-*h = NULL;
-free_list(&ptr);
-return (count);
-}
-}
-
-current_node = *h;
+listint_t *temp = *h;
 *h = (*h)->next;
-free(current_node);
-count++;
+free(temp);
+size++;
 }
 
-*h = NULL;
-free_list(&ptr);
-return (count);
+return (size);
 }
