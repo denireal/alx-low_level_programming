@@ -8,11 +8,9 @@ void free_listint(listint_t *head)
 {
 listint_t *temp;
 
-/* Loop through the list, freeing each node */
-while (head)
+while ((temp = head) != NULL)
 {
-temp = head->next;
-free(head);
-head = temp;
+head = head->next;
+free(temp);
 }
 }
