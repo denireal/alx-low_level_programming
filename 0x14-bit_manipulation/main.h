@@ -6,7 +6,7 @@
 
 /*
  * main.h
- * Description: Header file containing prototypes for all functions
+ * Description: Header file containing function prototypes
  */
 
 unsigned int binary_to_uint(const char *b);
@@ -15,7 +15,8 @@ int get_bit(unsigned long int n, unsigned int index);
 
 /**
  * @param c The character to be printed
- * @return On success, returns the character that was printed. On error, returns -1.
+ * @return On success, returns the character that was printed.
+ * On error, returns -1.
  */
 int _putchar(char c);
 
