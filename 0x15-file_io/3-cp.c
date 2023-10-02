@@ -1,31 +1,9 @@
 #include "main.h"
+#include <errno.h>
 
 #define BUFSIZE 1024
 
 int copy_file(const char *from, const char *to);
-
-/**
-* main - Copies the content of a file to another file.
-* @argc: The number of arguments.
-* @argv: The array of argument strings.
-*
-* Return: 0 on success, or the appropriate exit code on failure.
-*/
-int main(int argc, char *argv[])
-{
-if (argc != 3)
-{
-dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-return (97);
-}
-
-if (copy_file(argv[1], argv[2]) == -1)
-{
-return (98);
-}
-
-return (0);
-}
 
 /**
 * copy_file - Copies the content of one file to another.
@@ -85,6 +63,29 @@ if (close(fd_to) == -1)
 {
 dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
 return (-1);
+}
+
+return (0);
+}
+
+/**
+* main - Copies the content of a file to another file.
+* @argc: The number of arguments.
+* @argv: The array of argument strings.
+*
+* Return: 0 on success, or the appropriate exit code on failure.
+*/
+int main(int argc, char *argv[])
+{
+if (argc != 3)
+{
+dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+return (97);
+}
+
+if (copy_file(argv[1], argv[2]) == -1)
+{
+return (98);
 }
 
 return (0);
