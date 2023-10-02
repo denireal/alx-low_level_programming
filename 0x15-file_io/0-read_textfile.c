@@ -1,54 +1,40 @@
-#include <stdio.h>
 #include "main.h"
 
 /**
- * read_textfile - Reads and prints the content of a text file.
- * @filename: The name of the file to read.
- * @letters: The number of letters to read and print.
- *
- * Return: The actual number of letters read and printed.
- * 0 on failure or if filename is NULL.
- */
-
+* read_textfile - Reads and prints the content of a text file.
+* @filename: The name of the file to read.
+* @letters: The number of letters to read and print.
+*
+* Return: The actual number of letters read and printed.
+* 0 on failure or if filename is NULL.
+*/
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-char *buffer;
+int file_descriptor;
+ssize_t bytes_read, bytes_written;
+char *read_buffer;
 
 if (filename == NULL)
 return (0);  /* If filename is NULL, return 0 as specified. */
 
-FILE *file;
-file = fopen(filename, "r");
-if (file == NULL)
-return (0);  /* If the file can't be opened, return 0. */
+file_descriptor = open(filename, O_RDONLY);
 
+if (file_descriptor == -1)
+return (0);  /* If opening the file fails, return 0. */
 
-buffer = (char *)malloc(sizeof(char) * letters);
-if (buffer == NULL)
+read_buffer = malloc(sizeof(char) * letters);
+if (!read_buffer)
 {
-fclose(file);
-return (0);  /* Allocation failed; return 0. */
+close(file_descriptor);
+return (0);  /* If memory allocation fails, return 0. */
 }
 
-ssize_t bytesRead;
-bytesRead = fread(buffer, sizeof(char), letters, file);
-if (bytesRead <= 0)
-{
-free(buffer);
-fclose(file);
-return (0);  /* Reading failed; return 0. */
-}
+bytes_read = read(file_descriptor, read_buffer, letters);
+bytes_written = write(STDOUT_FILENO, read_buffer, bytes_read);
 
-ssize_t bytesWritten;
-bytesWritten = write(STDOUT_FILENO, buffer, bytesRead);
-if (bytesWritten != bytesRead)
-{
-free(buffer);
-fclose(file);
-return (0);  /* Writing failed; return 0. */
-}
+close(file_descriptor);
 
-free(buffer);
-fclose(file);
-return (bytesRead);
+free(read_buffer);
+
+return (bytes_written);
 }
