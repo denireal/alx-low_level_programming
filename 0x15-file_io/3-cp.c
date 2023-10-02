@@ -1,92 +1,100 @@
 #include "main.h"
-#include <errno.h>
-
-#define BUFSIZE 1024
-
-int copy_file(const char *from, const char *to);
 
 /**
-* copy_file - Copies the content of one file to another.
-* @from: The name of the source file.
-* @to: The name of the destination file.
+* error_file - Checks whether files can be opened.
+* @file_from: File descriptor for source file.
+* @file_to: File descriptor for destination file.
+* @argv: The arguments vector.
+*
+* Return: 0 on success, 98 or 99 on failure.
+*/
+int error_file(int file_from, int file_to, char *argv[])
+{
+if (file_from == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+return (98);
+}
+if (file_to == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+return (99);
+}
+return (0);
+}
+
+/**
+* copy_file - Copies the contents of one file to another.
+* @src_fd: Source file descriptor.
+* @dest_fd: Destination file descriptor.
+* @argv: Arguments vector.
 *
 * Return: 0 on success, -1 on failure.
 */
-int copy_file(const char *from, const char *to)
+int copy_file(int src_fd, int dest_fd, char *argv[])
 {
-int fd_from, fd_to;
-ssize_t bytes_read, bytes_written;
-char buffer[BUFSIZE];
+ssize_t nchars, nwr;
+char buf[1024];
 
-fd_from = open(from, O_RDONLY);
-if (fd_from == -1)
+while ((nchars = read(src_fd, buf, sizeof(buf))) > 0)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", from);
+nwr = write(dest_fd, buf, nchars);
+if (nwr == -1)
 return (-1);
 }
 
-fd_to = open(to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
-if (fd_to == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", to);
-close(fd_from);
+if (nchars == -1)
 return (-1);
-}
-
-while ((bytes_read = read(fd_from, buffer, BUFSIZE)) > 0)
-{
-bytes_written = write(fd_to, buffer, bytes_read);
-if (bytes_written == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", to);
-close(fd_from);
-close(fd_to);
-return (-1);
-}
-}
-
-if (bytes_read == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", from);
-close(fd_from);
-close(fd_to);
-return (-1);
-}
-
-if (close(fd_from) == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
-return (-1);
-}
-
-if (close(fd_to) == -1)
-{
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-return (-1);
-}
 
 return (0);
 }
 
 /**
-* main - Copies the content of a file to another file.
-* @argc: The number of arguments.
-* @argv: The array of argument strings.
+* main - Entry point of the program.
+* @argc: Number of arguments.
+* @argv: Arguments vector.
 *
-* Return: 0 on success, or the appropriate exit code on failure.
+* Return: 0 on success, 97, 98, 99, or 100 on failure.
 */
 int main(int argc, char *argv[])
 {
+int file_from, file_to, err_close;
+
 if (argc != 3)
 {
 dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 return (97);
 }
 
-if (copy_file(argv[1], argv[2]) == -1)
-{
-return (98);
-}
+file_from = open(argv[1], O_RDONLY);
+file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
 
+int error_code = error_file(file_from, file_to, argv);
+if (error_code != 0)
+return (error_code);
+
+if (copy_file(file_from, file_to, argv) == -1)
+{
+err_close = close(file_from);
+if (err_close == -1)
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+
+err_close = close(file_to);
+if (err_close == -1)
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
+return (99);
+}
+err_close = close(file_from);
+if (err_close == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+return (100);
+}
+err_close = close(file_to);
+if (err_close == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
+return (100);
+}
 return (0);
 }
