@@ -13,13 +13,13 @@ void print_error_and_exit(int code, char **av, int fd)
 switch (code)
 {
 case 97:
-dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", av[0]);
+dprintf(STDERR_FILENO, "Usage: %s %s %s\n", av[0], "file_from", "file_to");
 break;
 case 98:
 dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 break;
 case 99:
-dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", av[2]);
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 break;
 case 100:
 dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
