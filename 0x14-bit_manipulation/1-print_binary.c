@@ -7,23 +7,7 @@
 
 void print_binary(unsigned long int n)
 {
-int shift;
-int bit_flag = 0;
-
-if (n == 0)
-{
-_putchar('0');
-return;
-}
-
-shift = sizeof(n) * 8 - 1;
-while (shift >= 0)
-{
-bit_flag = (n >> shift) & 1;
-if (bit_flag)
-_putchar('1');
-else if (bit_flag == 0)
-_putchar('0');
-shift--;
-}
+	if (n > 1)
+		print_binary(n >> 1);
+	_putchar((n & 1) + '0');
 }
