@@ -10,17 +10,14 @@
 
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-unsigned int bit_count = 0;
-unsigned long int mask = 1;
-unsigned long int xor_result = (n ^ m);
+	unsigned long int result = n ^ m;
+	unsigned int bit_count = 0;
 
+	for (; result > 0; result >>= 1)
+	{
+		if (result & 1)
+			bit_count++;
+	}
 
-while (mask <= xor_result)
-{
-if (mask & xor_result)
-bit_count++;
-mask <<= 1;
-}
-
-return (bit_count);
+	return bit_count;
 }
