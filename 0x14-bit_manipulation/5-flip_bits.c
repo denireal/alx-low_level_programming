@@ -7,16 +7,16 @@
 * @m: The number n would flip into.
 * Return: The number of bits that need to be flipped for n to become m.
 */
+
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
 unsigned long int result = n ^ m;
 unsigned int bit_count = 0;
 
-while (result > 0)
+for (; result > 0; result >>= 1)
 {
 if (result & 1)
 bit_count++;
-result (>>= 1);
 }
 
 return (bit_count);
