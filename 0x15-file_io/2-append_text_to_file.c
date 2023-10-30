@@ -1,4 +1,4 @@
-include "main.h"
+#include "main.h"
 
 /**
 * append_text_to_file - Function that appends text to a file.
