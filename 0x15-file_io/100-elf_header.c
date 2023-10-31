@@ -193,6 +193,7 @@ if (header->e_ident[EI_DATA] == ELFDATA2MSB)
 {
 header->e_entry = ((header->e_entry << 8) & 0xFF00FF00) |
  ((header->e_entry >> 8) & 0xFF00FF);
+
 header->e_entry = (header->e_entry << 16) | (header->e_entry >> 16);
 }
 
