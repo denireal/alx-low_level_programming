@@ -10,8 +10,8 @@ dlistint_t *current;
 
 while (head != NULL)
 {
+head = current;
 head = head->next;
 free(head);
-head = current;
 }
 }
