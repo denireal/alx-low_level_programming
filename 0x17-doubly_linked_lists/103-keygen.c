@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 {
 /* Declarations */
 size_t index;
-char *charset = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
+char *cs = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 char key[7];
 size_t username_len;
 unsigned int sum, product;
@@ -26,7 +26,7 @@ strcpy(key, "      ");
 
 if (argc != 2)
 {
-printf("Correct usage: ./keygen5 username\n");
+printf("The right way to use it: ./keygen5 username\n");
 return 1; /* Exit with an error code */
 }
 
@@ -42,9 +42,9 @@ product *= argv[1][index];
 }
 
 
-key[0] = charset[(username_len ^ 59) & 63];
-key[1] = charset[(sum ^ 79) & 63];
-key[2] = charset[(product ^ 85) & 63];
+key[0] = cs[(username_len ^ 59) & 63];
+key[1] = cs[(sum ^ 79) & 63];
+key[2] = cs[(product ^ 85) & 63];
 
 
 max_char = argv[1][0];
@@ -54,7 +54,7 @@ max_char = argv[1][index];
 
 
 srand(max_char ^ 14);
-key[3] = charset[rand() & 63];
+key[3] = cs[rand() & 63];
 
 squared_sum = 0;
 rand_seed = 0;
@@ -66,8 +66,8 @@ for (loop_variable = 0; loop_variable < argv[1][0]; loop_variable++)
 rand_seed = rand();
 
 
-key[4] = charset[(squared_sum ^ 239) & 63];
-key[5] = charset[(rand_seed ^ 229) & 63];
+key[4] = cs[(squared_sum ^ 239) & 63];
+key[5] = cs[(rand_seed ^ 229) & 63];
 
 
 printf("%s\n", key);
