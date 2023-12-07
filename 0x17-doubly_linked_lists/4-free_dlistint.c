@@ -11,7 +11,7 @@ dlistint_t *current;
 while (head != NULL)
 {
 head = head->next;
-free(current);
+free(head);
 head = current;
 }
 }
