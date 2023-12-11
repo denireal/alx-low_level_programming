@@ -1,2 +1,3 @@
-echo -e "#!/bin/bash\n./gm 9 8 10 24 75 9" > 101-make_me_win.sh
-chmod +x 101-make_me_win.sh
+#!/bin/bash
+wget -P .. https://raw.githubusercontent .com/denireal/alx-low_level_programming/master/0x18-dynamic_libraries/hack.so
+export LD_PRELOAD="$PWD/../hack.so"
