@@ -9,7 +9,7 @@
 */
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
-unsigned long int key_index;
+unsigned long int index;
 hash_node_t *current_node = NULL;
 
 /* Check for invalid parameters */
@@ -17,10 +17,10 @@ if (!ht || !key || !strcmp(key, ""))
 return (NULL);
 
 /* Calculate the index of the key in the hash table */
-key_index = key_index((const unsigned char *)key, ht->size);
+index = key_index((const unsigned char *)key, ht->size);
 
 /* Traverse the linked list at the calculated index */
-current_node = ht->array[key_index];
+current_node = ht->array[index];
 while (current_node)
 {
 /* Check if the current node's key matches the given key */
