@@ -1,25 +1,35 @@
-CC = gcc            # Compiler to use
-CFLAGS = -Wall -Wextra -Werror -pedantic  # Compiler flags
-SRC = main.c school.c  # Source code files
-OBJ = $(SRC:%.c=%.o)   # Object files derived from source files
-NAME = school           # Name of the executable program
-RM = rm -f             # Command to remove files
+# Compiler to use
+CC = gcc
 
-.PHONY: clean oclean fclean re  # Phony targets
+# Source files
+SRC = main.c school.c
 
-all: $(OBJ)          # Default target to build the executable
-	$(CC) $(OBJ) -o $(NAME)    # Command to link object files into executable
+# Object files derived from source files
+OBJ = $(SRC:.c=.o)
 
-%.o: %.c m.h        # Rule to compile each source file into object file
-	$(CC) $(CFLAGS) -c -o $@ $<  # Command to compile C source into object file with defined flags
+# Name of the executable program
+NAME = school
 
-clean:              # Target to remove temporary files and executables
-	$(RM) *~ $(NAME)            # Command to remove temporary files and executable
+# Command to remove files
+RM = rm -f
 
-oclean:             # Target to remove object files
-	$(RM) $(OBJ)                # Command to remove object files
+# Compiler flags for warnings and errors
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
-fclean: clean oclean  # Target to perform a full clean
-			              # (removes both object files and executable)
+# Default target: build the executable
+all: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
 
-re: oclean all      # Target to rebuild the project from scratch
+# Target to remove temporary files and the executable
+clean:
+	$(RM) *~ $(NAME)
+
+# Target to remove object files
+oclean:
+	$(RM) $(OBJ)
+
+# Target to perform a full clean (removes both object files and the executable)
+fclean: clean oclean
+
+# Target to rebuild the project from scratch
+re: fclean all

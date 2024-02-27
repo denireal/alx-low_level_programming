@@ -1,42 +1,23 @@
 #!/usr/bin/python3
 
-"""
-This function calculates the perimeter of an island represented by a 2D grid.
-The grid consists of 0s representing water and 1s representing land. The perimeter
-is the length of the boundary between land and water.
-
-Args:
-    grid (List[List[int]]): A 2D list representing the island grid.
-
-Returns:
-    int: The perimeter of the island.
-
-Example:
-    grid = [
-        [0, 1, 0, 0],
-        [1, 1, 1, 0],
-        [0, 1, 0, 0],
-        [1, 1, 0, 0]
-    ]
-    island_perimeter(grid)  # Output: 16
-"""
-
 def island_perimeter(grid):
-    perimeter = 0
+    """
+    Calculates the perimeter of an island represented by a 2D grid.
     
-    # Iterate over each cell in the grid
-    for y, row in enumerate(grid):
-        for x, cell in enumerate(row):
-            if cell == 1:  # If the cell represents land
-                # Check neighbors to determine if the edge is exposed to water
-                # If at the boundary or neighbor is water, increment perimeter
-                if y == 0 or grid[y - 1][x] == 0:
-                    perimeter += 1
-                if y == len(grid) - 1 or grid[y + 1][x] == 0:
-                    perimeter += 1
-                if x == 0 or grid[y][x - 1] == 0:
-                    perimeter += 1
-                if x == len(row) - 1 or grid[y][x + 1] == 0:
-                    perimeter += 1
-
+    Args:
+        grid (List[List[int]]): A 2D list representing the island grid.
+            1 represents land, 0 represents water.
+    
+    Returns:
+        int: The perimeter of the island.
+    """
+    perimeter = 0
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            if grid[i][j] == 1:  # Check if the cell is land
+                perimeter += 4
+                if i > 0 and grid[i - 1][j] == 1:
+                    perimeter -= 2  # Subtract 2 if there's land to the top
+                if j > 0 and grid[i][j - 1] == 1:
+                    perimeter -= 2  # Subtract 2 if there's land to the left
     return perimeter
