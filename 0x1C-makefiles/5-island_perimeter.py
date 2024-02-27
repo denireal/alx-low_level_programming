@@ -20,15 +20,15 @@ def island_perimeter(grid):
         ]
         island_perimeter(grid)  # Output: 16
     """
-    perimeter = 0
-    # Iterate over each cell in the grid
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
-            if grid[i][j] == 1:  # If the cell is land
-                perimeter += 4  # Increment perimeter by 4 for each land cell
-                # Check adjacent cells to the top and left
-                if i > 0 and grid[i - 1][j] == 1:
-                    perimeter -= 2  # Subtract 2 if there's land to the top
+    width = len(grid[0])
+    height = len(grid)
+    edges = 0
+
+    for i in range(height):
+        for j in range(width):
+            if grid[i][j] == 1:
                 if j > 0 and grid[i][j - 1] == 1:
-                    perimeter -= 2  # Subtract 2 if there's land to the left
-    return perimeter
+                    edges += 1
+                if i > 0 and grid[i - 1][j] == 1:
+                    edges += 1
+    return sum(sum(row) for row in grid) * 4 - edges * 2
